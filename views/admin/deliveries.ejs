@@ -1,0 +1,71 @@
+<%- include ('../_layouts/adminheader') %>
+    <h2 class="text-center"><%= title %></h2>
+    <br>
+    <br>
+    <a href="/admin/deliveries/add-delivery" class="btn btn-primary primbuts">Añadir Entrega</a>
+    <br>
+    <br>
+           <form class="form-inline my-2 my-lg-0" method="GET" action="/admin/deliveries" id="myForm">
+                <input class="form-control mr-sm-2" type="date" placeholder="Busca producto" aria-label="Search" name="date" onchange=submitDate()>
+              
+            </form>
+    <br>
+<% if(noMatch !== null) { %>
+             <h3><%= noMatch %></h3>
+             
+<% } %>
+    
+<div class="table-responsive">
+    
+    <table class="table table-striped deliveries_table" id="deliveriesTable">
+      <thead>
+        
+            <th>Cliente</th>
+            <th>Correo</th>
+            <th>Numero</th>
+            <th>Dirrecion</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Productos</th>
+            <th>Pagado</th>
+            <th></th>
+            <th>Precio</th>
+            <th></th>
+      </thead>
+
+        <tbody>
+            <% deliveries.forEach(function (d) {%>           
+            </tr>
+                <tr>
+                <td><%= d.name %></td>
+                <td><%= d.email %></td>
+                <td><%= d.phone %></td>
+                <td><%= d.address %></td>
+                <td><%= d.date %></td>
+                <td><%= d.time %></td>
+                <td><%= d.products %></td>
+                <td><%= d.paid %></td>
+                <td><a href="#">Detalles</a></td>
+                <td><%= d.total %></td>
+                <td><a href="#">Editar</a></td>
+<td><a class="confirmDeletion sectext" href="/admin/deliveries/delete-delivery/<%= d._id %>">Borrar</a></td>
+            </tr>             
+            <%})%>
+            
+        </tbody>
+
+    </table>
+    </div>
+    
+    
+    <script>
+      
+      function submitDate(){
+      
+    document.getElementById('myForm').submit();
+
+
+      }
+    </script>
+ 
+    <%- include ('../_layouts/adminfooter') %>

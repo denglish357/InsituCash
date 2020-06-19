@@ -1,0 +1,132 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Tienda de Segunda Mano en Barcelona España">
+    <meta name="keywords" content="Segunda Mano Barcelona Hospitalet Tienda Muebles">
+    <meta name="author" content="Clifford Cotton">
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
+    "></link>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <title>Insitu Cash</title>
+    <meta name="keywords" content="Segunda Mano Barcelona Hospitalet Tienda Muebles">
+    
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Playfair+Display" />
+</head>
+
+<body>
+    <nav class="navbar mynav navbar-expand-md navbar-default b-bord">
+      <div class="branding drop no-br">
+<i class="fi-xnluxl-home text-prime"></i>
+        <a class="navbar-brand text-prime" href="/">
+          
+          Insitu</a>
+        <br>
+        
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+<i class="fi-xtluxl-three-bars-thin text-prime tog"></i>
+  </button>
+
+
+    </nav>
+    
+    
+        <div class="collapse no-br navbar-collapse bg-sec" id="navbarsExampleDefault">
+          
+          
+          
+        <form class="form-inline my-2 my-lg-0 search-form" method="GET" action="/">
+                <input class="form-control full mr-sm-2 search-box grey-back no-br" type="text" placeholder="Busca producto" aria-label="Search" name="search">
+                <button class="btn btn-secondary my-2 my-sm-0 searchbut back-third no-br" type="submit">Busca</button>
+            </form>
+            <ul class="navbar-nav mr-auto">
+       <li class="nav-item"><a href="/" class="nav-link text-white">Inicio</a></li>
+                <% pages.forEach(function (page) {%> 
+                <% if (page.slug == 'home') {%> 
+                    <li class="nav-item"><a class="nav-link text-white" href="/"><%= page.title%></a></li>
+                <%} else {%>
+                    <li class="nav-item"><a class="nav-link" href="/<%= page.slug %>"><%= page.title%></a></li>
+                <% }%>
+                
+                <%})%>
+            </ul>
+            <ul class="navbar-nav navbar-right text-white">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/cart/checkout">Mi Carro (
+                        <% if (typeof cart !== "undefined") {%> 
+                            <%= cart.length%> )            
+                         <%} else {%>0 )
+                         <% }%>
+                     </a>
+                </li>
+                <% if (user) { %> 
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/users/logout"><%= user.username %> ( Logout )</a>
+                </li>
+                <li class=nav-item><a href="/user/productoffs/add-oferta" class="nav-link text-white">Vende Algo</a></li>
+                <%} else {%>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/users/register">Registrate</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/users/login">Login</a>
+                </li>
+                <% } %>
+                <% if (user && user.admin == 1) {%>  
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/admin/pages">Admin Area</a>  
+                    </li>
+                <% } %>
+            </ul>
+    
+        </div>
+        
+    
+
+    <main role="main" class="container">
+    <br>
+    <!-- FLASH MESSAGES -->
+        <%- messages('messages', locals) %>
+        <%  if (errors) {%> 
+        <% errors.forEach(function (error)  {%>
+        <div class="alert alert-danger secbut">
+            <%= error.msg %>
+        </div>
+        <%}); %>
+        <%} %>
+        
+        
+     <!-- CATEGORIES SECTION -->
+        
+        
+    <p class="vecat sectext">Ve Todas Las Categorias</p>
+    
+    
+        <div class="row">
+            <div class="col-xm-12 col-md-3 cats back-third"> 
+                
+                <ul class="list-group">
+                  
+             <li class="list-group-item"><a class="" href="/products/">Todos los Productos</a></li>
+                    <% categories.forEach((c) => {%>
+                        <li class="list-group-item"><a href="/products/<%= c.slug %>"><%= c.title %>
+<i class="fi-xwsdxl-caret-solid fi-right"></i></a></li>
+                    <%})%>
+                </ul>
+            </div>
+            <div class="col-xm-12 col-md-1"></div>
+            
+  
+        
+   <div class="col-xm-12 col-md-8">
+            
+
+

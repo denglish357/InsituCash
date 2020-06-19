@@ -1,0 +1,29 @@
+<%- include ('../_layouts/header') %>
+        
+    <div class="row p-cont">
+        <div class="col-xs-12 col-md-5">
+            <img class="spi" src="/productoff_images/<%= p.id%>/<%= p.image %>" alt="">
+            <br>
+        </div>
+        <div class="col-xs-12 col-md-7">
+            <p class="ptit2"><%= p.desc %></p>
+<h5 class="ptit3"><%= p.title %></h5>
+            
+            <p class="ppric"><%= parseFloat(p.price).toFixed(2) %> €</p>
+            
+        </div>
+        <div class="col-xs-12">
+            <ul class="gallery">
+                <% galleryImages.forEach(function (image) {%> 
+                    <% if (image != "thumbs") {%> 
+                    <li class="">
+                        <a href="/productoff_images/<%= p.id %>/gallery/<%= image %>" data-fancybox="gallery">
+                            <img src="/productoff_images/<%= p.id %>/gallery/thumbs/<%= image %>" alt="">
+                        </a>
+                    </li>
+                    <%}%>
+                 <%}) %>
+            </ul>
+        </div>
+    </div>
+<%- include ('../_layouts/footer') %>

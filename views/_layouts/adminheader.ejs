@@ -1,0 +1,112 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Segunda Mano Barcelona Hospitalet Tienda Muebles">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Tienda de Segunda Mano">
+    <meta name="author" content="Clifford Cotton">
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css
+    "></link>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <title> Insitu Cash </title>
+    
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Playfair+Display" />
+
+<script type="text/javascript">
+        document.write( '<style>#footer{visibility:hidden}@media(min-height:' + ($( window ).height() - 10) + 'px){#footer{visibility:visible}}</style>' );
+    </script>
+
+</head>
+
+<body>
+  
+    <nav class="navbar mynav navbar-expand-md navbar-default b-bord">
+      <div class="branding drop no-br">
+<i class="fi-xnluxl-home text-prime"></i>
+        <a class="navbar-brand text-prime" href="/">
+          
+          Insitu</a>
+        
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+<i class="fi-xtluxl-three-bars-thin text-prime tog"></i>
+  </button>
+
+
+    </nav>
+    
+    
+        <div class="collapse no-br navbar-collapse bg-sec" id="navbarsExampleDefault">
+          
+          
+          
+        <form class="form-inline my-2 my-lg-0 search-form" method="GET" action="/">
+                <input class="form-control full mr-sm-2 search-box grey-back no-br" type="text" placeholder="Busca producto" aria-label="Search" name="search">
+                <button class="btn btn-secondary my-2 my-sm-0 searchbut back-third no-br" type="submit">Busca</button>
+            </form>
+            
+            
+            
+ <ul class="navbar-nav mr-auto">
+       <li class="nav-item"><a href="/" class="nav-link text-white">Inicio</a></li>
+   
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/pages">Paginas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/categories">Categorias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/admin/products">products</a>
+                </li>
+                <li class="nav-link"><a href="/admin/productoffs/admin_ofertas" class="nav-link text-white">ofertas</a></li>
+            </ul>
+            
+            
+ <ul class="navbar-nav navbar-right">
+                <% if (user) { %> 
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/users/logout"><%= user.username %> ( Logout )</a>
+                </li>
+                <%} else {%>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/users/login">Login</a>
+                </li>
+                <% } %>
+                <% if (user && user.admin == 1) {%>  
+               <li class="nav-item">
+                        <a class="nav-link text-white" href="/admin/deliveries">Entregas</a>  
+                    </li>
+                
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/admin/pages">Admin Area</a>  
+                    </li>
+                <% } %>
+            </ul>
+            
+        </div>
+
+    <main role="main" class="container">
+    <br>
+    <!-- FLASH MESSAGES -->
+        <%- messages('messages', locals) %>
+        <%  if (errors) {%> 
+        <% errors.forEach(function (error)  {%>
+        <div class="alert alert-danger secbut">
+            <%= error.msg %>
+        </div>
+        <%}); %>
+        <%} %>
+        
+
+
+

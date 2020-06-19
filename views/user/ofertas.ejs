@@ -1,0 +1,50 @@
+<%- include ('../_layouts/header') %>
+    <h2 class="page-title text-center mt-3">Mis Ofertas</h2>
+    <br>
+    <br>
+    <a href="/user/productoffs/add-oferta" class="btn primbuts btn-primary no-br">Haz Otra Oferta</a>
+    <br>
+    <br>
+
+    <% if (count > 0) {%>
+
+  <div class="table-responsive">
+
+    <table class="table table-striped alignmiddle">
+        <thead>
+            <th class="home">Producto</th>
+            <th>Precio Deseado</th>
+            <th>Categoria</th>
+            <th>Imagen del Producto</th>
+            <th>Editar</th>
+            <th>Borrar</th>
+        </thead>
+        <tbody>
+            <%ofertas.forEach(function (productoff){%>
+          
+                <tr>
+                    <td><%= productoff.title %></td>
+                    <td>€<%= parseFloat(productoff.price).toFixed(2) %></td>
+                    <td><%= productoff.category %></td>
+                    <td>
+                      <a href="/user/productoffs/oferta/<%= productoff._id %>" >
+                        <% if (productoff.image == "" ) { %>  
+                        <img id="noimage" class="image-fluid" src="/images/noimage.png">
+                        <%  } else  {%>    
+                            <img id="noimage" class="img-fluid" src="/productoff_images/<%= productoff._id %>/<%= productoff.image%>" >
+                        <% } %>
+                        </a>
+                    </td>
+                    <td><a href="/user/productoffs/edit-oferta/<%= productoff._id %>"class="primtext">Editar</a></td>
+                     <td><a class="confirmDeletion sectext" href="/user/productoffs/delete-oferta/<%= productoff._id %>">Borrar</a></td>
+                </tr>
+                
+            <%}); %>
+        </tbody>
+    </table>
+</div>
+        <% } else {%>
+            <h3 class="text-center">No hay productos</h3>
+        <% } %>
+    
+    <%- include ('../_layouts/footer') %>

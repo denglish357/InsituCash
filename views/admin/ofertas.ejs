@@ -1,0 +1,57 @@
+<%- include ('../_layouts/adminheader') %>
+    <h2 class="page-title text-center mt-3">Ofertas de Hoy</h2>
+    <br>
+    <br>
+    Busca por Fecha
+        <form class="form-inline my-2 my-lg-0" method="GET" action="/admin/productoffs/admin_ofertas" id="myForm">
+                <input class="form-control mr-sm-2" type="date" placeholder="Busca oferta" aria-label="Search" name="date" onchange=submitDate()>
+              
+            </form>
+    
+
+    <% if (count > 0) {%>
+
+  <div class="table-responsive">
+
+    <table class="table table-striped alignmiddle">
+        <thead>
+            <th class="home">Producto</th>
+            <th>Precio Deseado</th>
+            <th>Categoria</th>
+            <th>Imagen del Producto</th>
+        </thead>
+        <tbody>
+            <%ofertas.forEach(function (productoff){%>
+                <tr>
+                    <td><%= productoff.title %></td>
+                    <td>€<%= parseFloat(productoff.price).toFixed(2) %></td>
+                    <td><%= productoff.category %></td>
+                    <td>
+                        <% if (productoff.image == "" ) { %>  
+                        <img id="noimage" class="image-fluid" src="/images/noimage.png">
+                        <%  } else  {%>    
+                            <img id="noimage" class="img-fluid" src="/productoff_images/<%= productoff._id %>/<%= productoff.image%>" >
+                        <% } %>
+                    </td>
+                    
+                </tr>
+            <%}); %>
+        </tbody>
+    </table>
+</div>
+        <% } else {%>
+            <h3 class="text-center">No Hay Ofertas Hoy</h3>
+        <% } %>
+        
+   <script>
+      
+      function submitDate(){
+      
+    document.getElementById('myForm').submit();
+
+
+      }
+    </script>
+        
+    
+    <%- include ('../_layouts/adminfooter') %>

@@ -1,0 +1,42 @@
+<%- include ('./_layouts/header') %>
+<br>
+<h1><%- title %></h1>
+<br>
+<form method="post" action="/users/login">
+    <div class="form-group">
+        <label>Usario</label>
+        <input class="form-control" type="text" name="username" placeholder="Usario">
+    </div>
+    <div class="form-group">
+        <label>Contaseña</label>
+        <input class="form-control" type="password" name="password" id="password-field" value="secret">
+ <i toggle="#password-field" class="fi-xwluxl-eye-wide toggle-password field-icon"></i>
+    </div>
+    
+   
+    
+
+    
+    <button type="submit" class="btn btn-primary primbuts no-br"style="float: right;">Login</button>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    
+    <button class="btn no-br btn-block face-but">
+<i class="fi-cwluxl-facebook-circle"></i>
+      Login with Faceboook
+    </button>
+    <br>
+    <button class="btn no-br btn-block btn-danger">
+
+
+<i class="fi-snsuxl-google-logo"></i>
+
+      Login with Google
+    </button>
+</form>
+
+<%- include ('./_layouts/footer') %>

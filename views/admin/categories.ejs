@@ -1,0 +1,36 @@
+<%- include ('../_layouts/adminheader') %>
+    <h2 class="page-title text-center mt-3">Categories</h2>
+    <br>
+    <br>
+    <a href="/admin/categories/add-category" class="btn btn-primary primbuts">Añadir categoria nueva</a>
+    <br>
+    <br>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <th>Categoria</th>
+            <th>Imagen del Categoria</th>
+            <th>Editar</th>
+            <th>Borrar</th>
+        </thead>
+        <tbody>
+            <%categories.forEach(function (category){%>
+                <tr>
+                    <td><%= category.title %></td>
+                    <td>
+                   <% if (category.image == "" ) { %>  
+                        <img id="noimage" src="/images/noimage.png">
+                        <%  } else  {%>    
+                            <img id="noimage" class="image-fluid table-img" width="80px" src="/category_images/<%= category._id %>/<%= category.image%>" >
+                        <% } %>
+                      
+                    </td>
+                    <td><a href="/admin/categories/edit-category/<%= category.id %>"class="primtext">Editar</a></td>
+                     <td><a class="confirmDeletion sectext" href="/admin/categories/delete-category/<%= category._id %>">Borrar</a></td>
+                </tr>
+            <%}); %>
+        </tbody>
+    </table>
+    
+ </div>
+    <%- include ('../_layouts/adminfooter') %>

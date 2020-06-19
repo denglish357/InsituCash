@@ -1,0 +1,111 @@
+<%- include ('./_layouts/header') %>
+    <% if (typeof cart !== "undefined") {%>
+    <br>
+    <br>
+    <h1 class="table-title">Mi Carro</h1>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr>
+                <th>Imagen</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th></th>
+                <th>total parcial</th>
+            </tr>
+            <% var total = 0;%>
+
+            <% cart.forEach(function (product) {%> 
+            <% var sub = parseFloat(product.qty * product.price).toFixed(2);%>
+            <% total += +sub%>
+                <tr class="cart-items">
+                    <td><img class="cpi" src="<%= product.image %>"></td>
+                    <td class="pname"><%= product.title %></td>
+                    <td class="quantity-input" id="quantIn"><%= parseFloat(product.price).toFixed(2) %></td>
+                    <td align="center"><%= product.qty%></td>
+                    <td>
+                        <a href="/cart/update/<%= product.title %>?action=add" class="primtext">+</a>&nbsp;
+                        <a href="/cart/update/<%= product.title %>?action=remove" class="primtext">-</a>&nbsp;
+                        <a href="/cart/update/<%= product.title %>?action=clear"class="primtext">Quitar</a>&nbsp;
+                    </td>
+                    <td><%= sub %> €</td>
+                </tr>
+            <%})%>
+                <tr>
+                    <td colspan="6" align="right" class="cart-total-price"><%= parseFloat(total).toFixed(2); %> €</td>
+                </tr>
+                <tr>
+                    <td id="shop" colspan="6" align="right">
+                    <a href="/cart/update/entrega?action=domi" id="domi" class="primtext">
+                         A Domicilio
+                    </a>
+                        <br>
+                        <a href="/cart/clear" class="btn btn-danger clearcart no-br  secbuts">Vacia Carro</a>                  
+                        <button id="buttonCheckout" class="btn btn-primary buynow primbuts no-br">Comprar</button>
+                    </td>
+                </tr>
+        </table>
+        </div>
+         <%} else {%>
+         <h3 class="text-center mt-5">Tu Carro no tiene productos</h3>
+    <%}%>
+
+     
+ 
+    <script>
+        $(function () {
+                $('a.clearcart').on('click', function(e) {
+        if (!confirm('Confirmar vacia carro')) {
+            return false
+        }
+            });
+            });
+
+
+        // STRIPE CODE
+
+        var checkoutHandler = StripeCheckout.configure({
+        key: "<%= stripePublicKey %>",
+        locale: "auto"
+        });
+
+        var button = document.getElementById("buttonCheckout");
+        button.addEventListener("click", function(ev) {
+            
+        checkoutHandler.open({
+            name: "Insitu Cash",
+            description: "Example Purchase",
+            token: handleToken,
+            amount: <%= parseFloat(total).toFixed(2) * 100;%>
+        });
+        });
+
+        function handleToken(token) {
+            const data = {
+                name: "<%= user.name %>",
+                date: "",
+                products: "<%cart.forEach(function (p) {%><%= p.title %> <%})%>"
+            }
+        fetch("/cart/charge", {
+            method: "POST", 
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(token)
+        })
+        .then(
+            fetch("/admin/deliveries/add_delivery", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(data)
+            })
+        )
+        .then(res => {
+            window.location.replace(res.url);
+             });
+        }
+
+    </script>
+    
+    <script src="https://js.stripe.com/v3"></script>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+<%- include ('./_layouts/footer') %>
+

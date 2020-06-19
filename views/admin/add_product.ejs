@@ -1,0 +1,67 @@
+<%- include ('../_layouts/adminheader') %>
+<h2 class="page-title text-center mt-3">Añadir Producto</h2>
+<br>
+<br>
+<a href="/admin/products" class="btn btn-primary primbuts">Volver a Todos Los Productos</a>
+<br>
+<br>
+<form method="post" action="/admin/products/add-product" enctype="multipart/form-data">
+   <div class="form-group">
+        <label for="">Producto</label>   
+        <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Title">      
+   </div> 
+   <br>
+   <div class="form-goup">
+      <label for="">Descripcion</label>
+      <textarea class="form-control" name="desc" cols="30" rows="10" placeholder="descripcion"><%= desc %></textarea>
+   </div>
+   <br>
+   <div class="form-goup">
+      <label for="">Categoria</label>
+      <select name ="category" class="form-control">
+      <% categories.forEach(function (cat) { %>
+         <option value="<%= cat.slug %>"><%= cat.title %></option>
+     <% }); %>         
+      </select>
+   <br>
+   <div class="form-group">
+    <label for="">Precio</label>
+       <input type="text" class="form-control" name="price" value="<%= price %>" placeholder="precio"> 
+   </div>
+   <br>
+   
+   
+    <div class="form-group">
+<div class="upload-btn-wrapper">
+  <button class="btn file-btn">
+<i class="fi-xnsuxl-file-jpg-solid"></i>
+    Upload a file</button>
+  <input type="file" name="image" id="img" />
+</div>
+      <img src="#" id="imgPreview">
+   </div>
+   
+   
+   
+   <br>
+   <button type="submit" class="btn-btn-default primbuts">Submit</button>
+</form>
+
+<script>
+   function readUrl (input) {
+      if (input.files && input.files[0]) {
+         var reader = new FileReader();
+
+         reader.onload = function (e){
+            $('#imgPreview').attr('src',e.target.result).width(100).height(100);
+         }
+         reader.readAsDataURL(input.files[0]);
+      }
+   }
+
+   $('#img').change(function (){
+    readUrl(this);
+   });
+</script>
+<%- include ('../_layouts/adminfooter') %>
+

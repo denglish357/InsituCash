@@ -1,0 +1,46 @@
+<%- include ('./_layouts/header') %>
+    <h2>Gracias!!</h2>
+    
+    <p style="color: red">Por favor si deseas entrega a casa rellena tu informacion para entrega</p>
+ <div class="entreg_form col-xs-8 col-md-6">
+        <form method="post" action="/admin/deliveries/add-delivery?postFrom=user?action=formi" enctype="multipart/form-data">  
+                    <input type="hidden" value="<%= user.name%>" class="form-control" name="name" placeholder="">      
+    
+           <input type="hidden" value="<%= user.email %>" class="form-control" name="email" placeholder="">      
+            <br>
+                <div class="form-group">
+                    <label for="">Direcion</label>   
+                    <input type="text" class="form-control" name="address" placeholder="Direcion">      
+            </div> 
+    
+    <br>
+                <div class="form-group">
+                    <label for="">Elige Fecha</label>   
+                    <input type="date" class="form-control" name="date" placeholder="Fecha">      
+            </div> 
+            <br>
+                <div class="form-group">
+                    <label for="">Elige Hora</label>   
+                    <input type="time" class="form-control" name="time" placeholder="Hora">   
+    
+           </div>   
+                    <input type="hidden" class="form-control" name="total" value="<%= amount %>" placeholder="">      
+            <br>
+                <div class="form-group">
+                    <label for="">Telefono</label>   
+                    <input type="text" class="form-control" name="phone" placeholder="Telefono">      
+            </div> 
+    
+      <div class="form-group">
+                <label for="">Detalles</label>
+                <textarea class="form-control" name="details" cols="30" rows="10" placeholder="detalles"></textarea>
+            </div> 
+            <br>
+            <input type="hidden" value="yes" name="paid">
+       <input type="hidden" value="<%cart.forEach(function (p) {%><%= p.title %> <%})%>" name="products" placeholder="<%cart.forEach(function (p) {%><%= p.title %> <%})%>" + "">
+            <button type="submit" class="btn btn-secondary no-br">Submit</button>
+        </form>
+    </div>
+    
+<%- include ('./_layouts/footer') %>
+

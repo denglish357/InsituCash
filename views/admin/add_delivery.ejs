@@ -1,0 +1,67 @@
+<%- include ('../_layouts/adminheader') %>
+<h2 class="page-title text-center mt-3">Añadir Entrega</h2>
+<br>
+<br>
+<a href="/admin/deliveries" class="btn btn-primary primbuts">Volver a Todos Los Entregas</a>
+<br>
+<br>
+<form method="post" action="/admin/deliveries/add-delivery" enctype="multipart/form-data">
+   <div class="form-group">
+        <label for="">Nombre</label>   
+        <input type="text" class="form-control" name="name" placeholder="Title">      
+   </div> 
+   <br>
+      <div class="form-group">
+        <label for="">Correo</label>   
+        <input type="email" class="form-control" name="email" placeholder="Correo">      
+   </div> 
+   <br>
+      <div class="form-group">
+        <label for="">Direcion</label>   
+        <input type="text" class="form-control" name="address" placeholder="Direcion">      
+   </div> 
+   <br>
+      <div class="form-group">
+        <label for="">Fecha</label>   
+        <input type="date" class="form-control" name="date" placeholder="Fecha">      
+   </div> 
+   <br>
+      <div class="form-group">
+        <label for="">Hora</label>   
+        <input type="time" class="form-control" name="time" placeholder="Hora">      
+   </div> 
+   <br>
+      <div class="form-group">
+        <label for="">Total</label>   
+        <input type="number" class="form-control" name="total" placeholder="Total">      
+   </div> 
+   <br>
+      <div class="form-group">
+        <label for="">Telefono</label>   
+        <input type="text" class="form-control" name="phone" placeholder="Telefono">      
+   </div> 
+   <br>
+      <div class="form-group">
+        <label for="">Pagado</label>   
+        <input type="text"name="paid" value="si o no">      
+   </div> 
+   <br>
+      <div class="form-group">
+        <label for="">C.O.D</label>   
+        <input type="text" class="form-control" name="cod" placeholder="C.O.D">      
+   </div> 
+   <br>
+      <div class="form-group">
+        <label for="">Products</label>   
+        <input type="text" class="form-control" name="products" placeholder="Title">      
+   </div> 
+   <br>
+      <div class="form-group">
+      <label for="">Detalles</label>
+      <textarea class="form-control" name="details" cols="30" rows="10" placeholder="detalles"></textarea>
+   </div> 
+   <br>
+   <button type="submit" class="btn btn-secondary primbuts">Submit</button>
+</form>
+<%- include ('../_layouts/adminfooter') %>
+
